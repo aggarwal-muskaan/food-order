@@ -14,7 +14,7 @@ function MealItem(props) {
       </div>
 
       <div>
-        <MItemForm />
+        <MItemForm id={props.id} />
       </div>
     </li>
   );
