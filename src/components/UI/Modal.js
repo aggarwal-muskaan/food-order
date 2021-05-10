@@ -5,7 +5,7 @@ import classes from "../../styles/Modal.module.css";
 const overlay = document.getElementById("modal-overlays");
 
 const Backdrop = (props) => {
-  return <div className={classes.backdrop} />;
+  return <div className={classes.backdrop} onClick={props.onClickBackdrop} />;
 };
 
 const ModalOverlay = (props) => {
@@ -19,7 +19,10 @@ const ModalOverlay = (props) => {
 function Modal(props) {
   return (
     <>
-      {ReactDOM.createPortal(<Backdrop />, overlay)}
+      {ReactDOM.createPortal(
+        <Backdrop onClickBackdrop={props.onClose} />,
+        overlay
+      )}
       {ReactDOM.createPortal(
         <ModalOverlay>{props.children}</ModalOverlay>,
         overlay
