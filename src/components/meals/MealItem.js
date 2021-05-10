@@ -1,8 +1,11 @@
-import React from "react";
+import { changeCartValue } from "../../store/cart.context";
+import React, { useContext } from "react";
 import MItemForm from "./MItemForm";
 import classes from "../../styles/MealItem.module.css";
 
 function MealItem(props) {
+  const dispatch = useContext(changeCartValue);
+
   const price = `$${props.price.toFixed(2)}`;
 
   return (
@@ -14,7 +17,20 @@ function MealItem(props) {
       </div>
 
       <div>
-        <MItemForm id={props.id} />
+        <MItemForm
+          id={props.id}
+          formSubmit={(q) =>
+            dispatch({
+              type: "add",
+              value: {
+                id: props.id,
+                name: props.name,
+                quantity: q,
+                price: props.price,
+              },
+            })
+          }
+        />
       </div>
     </li>
   );
