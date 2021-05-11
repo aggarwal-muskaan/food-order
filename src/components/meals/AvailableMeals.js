@@ -6,10 +6,12 @@ import axios from "axios";
 
 function AvailableMeals() {
   const [meals, setMeals] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     // IIFE
     (async () => {
+      setLoading(true);
       const baseUrl =
         "https://meals-demo-default-rtdb.firebaseio.com/DUMMY_MEALS.json";
       const res = await axios.get(baseUrl);
@@ -27,10 +29,13 @@ function AvailableMeals() {
       }
       // setting state with loaded meals
       setMeals(mealsArray);
+      setLoading(false);
     })();
   }, []);
 
-  return (
+  return loading ? (
+    <p className={classes.loading}>Loading...</p>
+  ) : (
     <section className={classes.meals}>
       <MCard>
         <ul>
