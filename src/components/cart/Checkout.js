@@ -2,11 +2,7 @@ import React from "react";
 import { Formik, Field, Form } from "formik";
 import classes from "../../styles/Checkout.module.css";
 
-function Checkout({ onCancel }) {
-  const confirmHandler = (event) => {
-    event.preventDefault();
-  };
-
+function Checkout({ onCancel, onConfirm }) {
   const validateName = (value) => {
     let error;
     if (!value.trim()) {
@@ -48,7 +44,15 @@ function Checkout({ onCancel }) {
         postal: "",
         city: "",
       }}
-      onSubmit={confirmHandler}
+      onSubmit={(props) => {
+        // console.log(props.street);
+        onConfirm({
+          name: props.name,
+          street: props.street,
+          postalCode: props.postal,
+          city: props.city,
+        });
+      }}
     >
       {({ errors, touched, isValidating }) => (
         <Form className={classes.form}>
@@ -58,7 +62,7 @@ function Checkout({ onCancel }) {
               name="name"
               validate={validateName}
               className={`${classes.control} ${
-                errors.name && classes.invalidInput
+                touched.name && classes.invalidInput
               }`}
             />
             {errors.name && touched.name && (
@@ -72,7 +76,7 @@ function Checkout({ onCancel }) {
               name="street"
               validate={validateStreet}
               className={`${classes.control} ${
-                errors.street && classes.invalidInput
+                touched.street && classes.invalidInput
               }`}
             />
             {errors.street && touched.street && (
@@ -86,7 +90,7 @@ function Checkout({ onCancel }) {
               name="postal"
               validate={validatePostal}
               className={`${classes.control} ${
-                errors.postal && classes.invalidInput
+                touched.name && classes.invalidInput
               }`}
             />
             {errors.postal && touched.postal && (
@@ -100,7 +104,7 @@ function Checkout({ onCancel }) {
               name="city"
               validate={validateCity}
               className={`${classes.control} ${
-                errors.city && classes.invalidInput
+                touched.name && classes.invalidInput
               }`}
             />
             {errors.city && touched.city && (
@@ -112,7 +116,9 @@ function Checkout({ onCancel }) {
             <button type="button" onClick={onCancel}>
               Cancel
             </button>
-            <button className={classes.submit}>Confirm</button>
+            <button className={classes.submit} type="submit">
+              Confirm
+            </button>
           </div>
         </Form>
       )}
