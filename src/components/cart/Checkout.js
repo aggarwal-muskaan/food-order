@@ -57,9 +57,13 @@ function Checkout({ onCancel }) {
             <Field
               name="name"
               validate={validateName}
-              className={classes.control}
+              className={`${classes.control} ${
+                errors.name && classes.invalidInput
+              }`}
             />
-            {errors.name && touched.name && <p>{errors.name}</p>}
+            {errors.name && touched.name && (
+              <p className={classes.invalid}>{errors.name}</p>
+            )}
           </div>
 
           <div className={classes.control}>
@@ -67,9 +71,13 @@ function Checkout({ onCancel }) {
             <Field
               name="street"
               validate={validateStreet}
-              className={classes.control}
+              className={`${classes.control} ${
+                errors.street && classes.invalidInput
+              }`}
             />
-            {errors.street && touched.street && <p>{errors.street}</p>}
+            {errors.street && touched.street && (
+              <p className={classes.invalid}>{errors.street}</p>
+            )}
           </div>
 
           <div className={classes.control}>
@@ -77,9 +85,13 @@ function Checkout({ onCancel }) {
             <Field
               name="postal"
               validate={validatePostal}
-              className={classes.control}
+              className={`${classes.control} ${
+                errors.postal && classes.invalidInput
+              }`}
             />
-            {errors.postal && touched.postal && <p>{errors.postal}</p>}
+            {errors.postal && touched.postal && (
+              <p className={classes.invalid}>{errors.postal}</p>
+            )}
           </div>
 
           <div className={classes.control}>
@@ -87,9 +99,13 @@ function Checkout({ onCancel }) {
             <Field
               name="city"
               validate={validateCity}
-              className={classes.control}
+              className={`${classes.control} ${
+                errors.city && classes.invalidInput
+              }`}
             />
-            {errors.city && touched.city && <p>{errors.city}</p>}
+            {errors.city && touched.city && (
+              <p className={classes.invalid}>{errors.city}</p>
+            )}
           </div>
 
           <div className={classes.actions}>
