@@ -46,6 +46,7 @@ function Cart(props) {
       .catch((err) => alert(`${err} \n "Something went wrong!"`));
     setOrderStatus(false);
     setOrderSubmission(true);
+    dispatch({ type: "clearCart" });
   };
 
   const isCartEmpty = currentItems.items.length !== 0 ? false : true;
