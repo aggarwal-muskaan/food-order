@@ -13,8 +13,7 @@ function AvailableMeals() {
     (async () => {
       try {
         setLoading(true);
-        const baseUrl =
-          "https://meals-demo-default-rtdb.firebaseio.com/DUMMY_MEALS.json";
+        const baseUrl = process.env.REACT_APP_MEALS_URL;
         const res = await axios.get(baseUrl);
         const data = await res.data;
 

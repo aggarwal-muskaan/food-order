@@ -35,7 +35,7 @@ function Cart(props) {
   };
 
   const handleConfirmedOrder = async (userData) => {
-    const url = "https://meals-demo-default-rtdb.firebaseio.com/orders.json";
+    const url = process.env.REACT_APP_CART_ORDERS_URL;
     setOrderStatus(true);
     await axios
       .post(url, {
