@@ -28,7 +28,7 @@ function Header({ onShowCart }) {
   return (
     <div className={classes["header-container"]}>
       <header className={classes.header}>
-        <h1>Meals</h1>
+        <h1>Munchies</h1>
         <button className={btnClasses} onClick={onShowCart}>
           <span className={classes.icon}>
             <CartIcon />
